@@ -9,7 +9,7 @@ def compose(*funcs):
 
 
 
-base = int(input("Choose a base. (2 for normal 2048)\n> "))
+base = int(input("Choose a base. (2 for normal 2048)\n> "))s
 
 
 
@@ -95,15 +95,15 @@ try:
 
         def line(b,c): return b + b.join([c*(size)]*len(board)) + b
         border, gap = line("+","-"), line("|"," ")
-        pad = "\n" + "\n".join([gap]*((size-2)//4)) if size > 5 else ""
+        ante = "\n" + "\n".join([gap]*((size-2)//4)) if size > 5 else ""
         screen.addstr(0, 0, border, curses.color_pair(1))
         for row in board:
-            screen.addstr(pad + "\n|", curses.color_pair(1))
+            screen.addstr(ante + "\n|", curses.color_pair(1))
             for e in row:
                 if e: screen.addstr(str(e).center(size), colors[e])
                 else: screen.addstr(" " * size)
                 screen.addstr("|", curses.color_pair(1))
-            screen.addstr(pad + "\n" + border, curses.color_pair(1))
+            screen.addstr(ante + "\n" + border, curses.color_pair(1))
     board = addn([[None for _ in range(base**2)] for _ in range(base**2)])
     printBoard(board)
 
